@@ -54,7 +54,6 @@ class HTML2Data(object):
         return (elements or [None])[0]
 
     def _apply_after(self, value, apply_after, multiple, strip, text):
-        total_added_after = 0
         if not multiple:
             apply_after.insert(0,  self._get_one)
         if strip and text:
