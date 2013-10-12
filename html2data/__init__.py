@@ -11,8 +11,8 @@ class HTML2Data(object):
             raise Exception('html or url or tree parameters are required')
         if url:
             connection = Http()
-            header, html = connection.request(url)
-        elif html:
+            _, html = connection.request(url)
+        if html:
             self.tree = self._get_tree_from_html(html)
         else:
             self.tree = tree
