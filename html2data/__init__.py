@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from lxml import etree
-from StringIO import StringIO
 from copy import copy
 
 from httplib2 import Http

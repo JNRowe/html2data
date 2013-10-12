@@ -1,8 +1,6 @@
 # encoding: utf-8
-import os
 from unittest import TestCase
 
-from httplib2 import Http
 from ludibrio import Mock
 
 from html2data import HTML2Data
