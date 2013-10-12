@@ -15,7 +15,7 @@ setup(
     license = "BSD",
     keywords = "html2data html data xpath crawler transform",
     url = "https://github.com/dperezrada/html2data",
-    packages=['html2data', 'tests'],
+    packages=['html2data', ],
     long_description=read('README.rst'),
     include_package_data=True,
     classifiers=[
