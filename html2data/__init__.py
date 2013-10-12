@@ -65,7 +65,9 @@ class HTML2Data(object):
             value = after(value)
         return value
             
-    def parse_one(self, xpath = None, css = None, multiple = False, apply_after = [], text = True, strip = True):
+    def parse_one(self, xpath = None, css = None, multiple = False, apply_after = None, text = True, strip = True):
+        if apply_after is None:
+            apply_after = []
         #TODO: Be able to return elements and text
         if xpath:
             value = self.xpath(xpath.replace('/text()', ''))
