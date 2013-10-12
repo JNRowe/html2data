@@ -1,11 +1,11 @@
 # encoding: utf-8
 from unittest import TestCase
 
-
 from html2data import HTML2Data
 
-def getOne(elements):
-    if len(elements) >0:
+
+def get_one(elements):
+    if len(elements) > 0:
         return elements[0]
     return None
 
@@ -20,33 +20,35 @@ class TestParse(TestCase):
             <body>
                 <h1><b>Title</b></h1>
                 <div class="description">This is not a valid XML
-                <ul id="some_cities">Cities 
+                <ul id="some_cities">Cities
                     <li>Santiago</li>
                     <li>Valparaiso</li>
                 </ul>
             </body>
         </html>"""
-        self.html2data_instance = HTML2Data(html = html)
+        self.html2data_instance = HTML2Data(html=html)
 
     def test_xpath(self):
         title = self.html2data_instance.xpath('//head/title/text()')
-        self.assertEqual(['Example Page',], title)
-    
+        self.assertEqual(['Example Page', ], title)
+
     def test_css_select(self):
-        title = self.html2data_instance.css_select('head title', text = True)
-        self.assertEqual(['Example Page',], title)
-    
+        title = self.html2data_instance.css_select('head title', text=True)
+        self.assertEqual(['Example Page', ], title)
+
     def test_parse_one_element(self):
-        dict_parsed = self.html2data_instance.parse_one(xpath = '//ul[@id="some_cities"]/li', multiple = True)
+        dict_parsed = self.html2data_instance.parse_one(xpath='//ul[@id="some_cities"]/li', multiple=True)
         expected_array = ['Santiago', 'Valparaiso']
         self.assertEqual(expected_array, dict_parsed)
-    
+
     def test_parse_with_xpath_config(self):
         config = [
             {'name': 'title',  'xpath': '//head/title'},
             {'name': 'body_title',  'xpath': '//h1/b'},
-            {'name': 'description',  'xpath': '//div[@class="description"]', 'strip': False},
-            {'name': 'cities',  'xpath': '//ul[@id="some_cities"]/li', 'multiple': True},
+            {'name': 'description',  'xpath': '//div[@class="description"]',
+             'strip': False},
+            {'name': 'cities',  'xpath': '//ul[@id="some_cities"]/li',
+             'multiple': True},
         ]
         dict_parsed = self.html2data_instance.parse(config)
         expected_dict = {
@@ -59,7 +61,7 @@ class TestParse(TestCase):
             ]
         }
         self.assertEqual(expected_dict, dict_parsed)
-    
+
     def test_parse_with_css_config(self):
         config = [
             {'name': 'title',  'css': 'head title'},
